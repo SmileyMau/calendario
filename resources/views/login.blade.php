@@ -10,9 +10,9 @@
 		<!-- Google Font -->
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
-		<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logos/sello_sl.png')}}"/>
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logos/sello_sl.png')}}" />
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logos/sello_sl.png')}}" />
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85" ></script>
