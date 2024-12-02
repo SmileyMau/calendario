@@ -56,7 +56,7 @@
 <body>
     <div class="email-container">
         <div class="email-header">
-            <img src="{{ asset('storage/logo_st.png') }}" alt="Logo">
+            <h3>Cronograma Electrónico de Documentos Normativos Administrativos</h3>
         </div>
         <div class="email-body">
             <p>Hola, {{ $evento->name }} {{ $evento->last_name }}!</p>
@@ -65,8 +65,7 @@
             <p class="email-description">{{ $evento->descripcion }}</p>
         </div>
         <div class="email-footer">
-            &copy; 2024 - Cronograma Electrónico de Documentos Normativos Administrativos
-        </div>
+            &copy; 2024 - Este correo fue enviado automáticamente por el sistema
     </div>
 </body>
 </html>
