@@ -26,4 +26,8 @@ Route::get('admin', function () {
     return view('template');
 });
 
+Route::get('test', function () {
+    $evento = Evento::find(2);
+    return view('reminder', compact('evento'));
+});
 Route::resource('/evento', 'App\Http\Controllers\EventoController');

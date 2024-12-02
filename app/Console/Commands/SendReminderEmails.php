@@ -35,7 +35,8 @@ class SendReminderEmails extends Command
         $eventos = DB::table('eventos')
         ->join('users','eventos.id_user','users.id')
         ->select('eventos.*','users.name','users.last_name','users.email')     
-        ->where('fecha_fin','<=',$today)
+        //->where('fecha_fin','<=',$today)
+        ->where('eventos.id','=',1)
         ->get();
         //dd($eventos);
 
