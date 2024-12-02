@@ -116,9 +116,9 @@
 		<div class="right-sidebar">
 			<div class="sidebar-title">
 				<h3 class="weight-600 font-16 text-blue">
-					Layout Settings
+					Configuración de diseño
 					<span class="btn-block font-weight-400 font-12"
-						>User Interface Settings</span
+						>Configuración de la interfaz de usuario</span
 					>
 				</h3>
 				<div class="close-sidebar" data-toggle="right-sidebar-close">
@@ -127,7 +127,8 @@
 			</div>
 			<div class="right-sidebar-body customscroll">
 				<div class="right-sidebar-body-content">
-					<h4 class="weight-600 font-18 pb-10">Header Background</h4>
+					<h4 class="weight-600 font-18 pb-10">
+						Fondo del encabezado</h4>
 					<div class="sidebar-btn-group pb-30 mb-10">
 						<a
 							href="javascript:void(0);"
@@ -141,7 +142,7 @@
 						>
 					</div>
 
-					<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
+					<h4 class="weight-600 font-18 pb-10">Fondo de la barra lateral</h4>
 					<div class="sidebar-btn-group pb-30 mb-10">
 						<a
 							href="javascript:void(0);"
@@ -155,7 +156,7 @@
 						>
 					</div>
 
-					<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
+					<h4 class="weight-600 font-18 pb-10">Icono de menú desplegable</h4>
 					<div class="sidebar-radio-group pb-10 mb-10">
 						<div class="custom-control custom-radio custom-control-inline">
 							<input
@@ -196,7 +197,8 @@
 						</div>
 					</div>
 
-					<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
+					<h4 class="weight-600 font-18 pb-10">
+						Icono de lista de menú</h4>
 					<div class="sidebar-radio-group pb-30 mb-10">
 						<div class="custom-control custom-radio custom-control-inline">
 							<input
@@ -276,7 +278,7 @@
 
 					<div class="reset-options pt-30 text-center">
 						<button class="btn btn-danger" id="reset-settings">
-							Reset Settings
+							Restablecer configuración
 						</button>
 					</div>
 				</div>
@@ -285,7 +287,7 @@
 
 		<div class="left-side-bar">
 			<div class="brand-logo">
-				<a href="index.html">
+				<a href="#">
 					<img src="{{asset('images/logos/logo_blanco.png')}}" alt="" class="light-logo" width="75"/>
 					<img src="{{asset('images/logos/logo.png')}}" alt="" class="dark-logo" width="75"/>
 					<!--<img
