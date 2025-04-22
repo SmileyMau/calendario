@@ -16,9 +16,6 @@
 		<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/core.css')}}" />
 		<link rel="stylesheet" type="text/css" href="{{asset('vendors/styles/icon-font.min.css')}}" />
 		<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css')}}" />
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85" ></script>
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258" crossorigin="anonymous" ></script>
 
 	</head>
 	<body class="login-page">
@@ -87,15 +84,6 @@
 		<script src="{{asset('vendors/scripts/script.min.js')}}"></script>
 		<script src="{{asset('vendors/scripts/process.js')}}"></script>
 		<script src="{{asset('vendors/scripts/layout-settings.js')}}"></script>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
-				height="0"
-				width="0"
-				style="display: none; visibility: hidden"
-			></iframe
-		></noscript>
-		<!-- End Google Tag Manager (noscript) -->
+
 	</body>
 </html>
