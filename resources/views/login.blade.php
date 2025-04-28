@@ -30,6 +30,14 @@
 							<div class="login-title">
 
 								<h2 class="text-center text-primary">Iniciar sesión</h2>
+								@if ($message = Session::get('error'))
+									<div class="alert alert-danger d-flex align-items-center" role="alert">
+										<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+										<div style="color: black">
+											{{ $message }}
+										</div>
+									</div>
+								@endif
 							</div>
 							<form action="{{route('login')}}" method="POST">
 								@csrf 
