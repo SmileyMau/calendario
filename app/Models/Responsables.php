@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class Responsables extends Model
 {
     protected $fillable=[
-        'area',
-        'descripcion',
+        'id_acuerdo',
+        'id_usuario',
         'estatus',
-    ];
+    ]; 
 }

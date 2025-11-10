@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas', function (Blueprint $table) {
+        Schema::create('acuerdos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('area');
-            $table->string('descripcion');
+            $table->integer('id_sesion')->unsigned()->notNull();
+            $table->date('fecha_limite');
+            $table->integer('num_acuerdo');
             $table->string('estatus');
+            $table->string('nomenclatura');
             $table->timestamps();
+            $table->foreign('id_sesion')->references('id')->on('sesiones')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('acuerdos');
     }
 };

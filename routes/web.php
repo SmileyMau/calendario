@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SesionController;
 use App\Models\Evento;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 
 /*Route::get('/', function () {
@@ -19,6 +22,8 @@ Route::get('/logout', function () {
  
 Route::get('/login', 'App\Http\Controllers\auth\UserController@index')->name('login.index')->middleware('guest');
 Route::post('/login', 'App\Http\Controllers\auth\UserController@login')->name('login')->middleware('guest');
+Route::resource('/sesiones','App\Http\Controllers\SesionController');
+Route::resource('/acuerdos','App\Http\Controllers\AcuerdoController');
 
 
 
@@ -31,3 +36,4 @@ Route::get('test', function () {
     return view('reminder', compact('evento'));
 });
 Route::resource('/evento', 'App\Http\Controllers\EventoController');
+

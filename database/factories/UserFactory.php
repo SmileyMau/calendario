@@ -24,14 +24,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'user' => 'esanchez',
-            'name' => 'Ernesto Armando',
-            'last_name' => 'Sánchez López',
+            'user' => 'jacr',
+            'name' => 'José Alejandro',
+            'last_name' => 'Cantera Ramos',
             'id_area' => 1,
             'rol' => 'A',
-            'email' => 'informatica@congreso-hidalgo.gob.mx',
+            'email' => 'jacr@gmail.com',
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('esanchez'),
+            'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
     }
