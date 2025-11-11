@@ -318,7 +318,13 @@
 							@endif
 							
 						</li>
-						
+						<li class="dropdown">
+							<a href="{{ route('grupo.index')}}" class="dropdown-toggle">
+								<span class="micon bi bi-house"></span
+								><span class="mtext">Grupo</span>
+							</a>
+							
+						</li>
 					</ul>
 				</div>
 			</div>

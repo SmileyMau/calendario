@@ -25,13 +25,13 @@ class UserFactory extends Factory
     {
         return [
             'user' => 'esanchez',
-            'name' => 'Ernesto Armando',
-            'last_name' => 'Sánchez López',
+            'name' => 'Carlos wenceslao',
+            'last_name' => 'cuanalo flores',
             'id_area' => 1,
             'rol' => 'A',
-            'email' => 'informatica@congreso-hidalgo.gob.mx',
+            'email' => 'wencarlos@gmail.com',
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('esanchez'),
+            'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
     }

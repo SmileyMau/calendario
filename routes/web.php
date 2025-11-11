@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\GrupoController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Evento;
 
@@ -19,6 +19,7 @@ Route::get('/logout', function () {
  
 Route::get('/login', 'App\Http\Controllers\auth\UserController@index')->name('login.index')->middleware('guest');
 Route::post('/login', 'App\Http\Controllers\auth\UserController@login')->name('login')->middleware('guest');
+Route::resource('grupo', 'App\Http\Controllers\GrupoController')->middleware('auth');
 
 
 
