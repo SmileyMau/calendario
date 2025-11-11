@@ -9,7 +9,6 @@
             data-bs-target="#exampleModal" id="modal_show">Agregar</a></h1>
     </div>
 </div>
-
 <div class="card">
     <div class="card-body">
         <table class="table">
@@ -58,7 +57,7 @@
 </div>
 <!-- Modal para agregar nuevas sesiones -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered"> 
+  <div class="modal-dialog modal-xl "> 
     <div class="modal-content">
       <div class="modal-body">
         <form method="POST" enctype="multipart/form-data" action="{{ route('acuerdos.store') }}">
@@ -79,7 +78,7 @@
                         {{$message}}
                     </div>
                 @enderror
-                </div>
+              </div>
             <div class="col-md-6">
               <label for="fecha" class="form-label">Fecha Limite</label>
               <input type="date" name="fecha_limite" id="fecha" class="form-control" required>
@@ -92,11 +91,30 @@
               <label for="numero" class="form-label">Nomenclatura</label>
               <input type="text" name="nomenclatura" id="numero" class="form-control" placeholder="Ej. 12" required>
             </div>
-          <div class="text-end">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-
+      
+           <div class="col-md-12" id="document-container" style="margin-top: 2%">
+            <label >Responsables</label>
+            <div class="document-group" >
+                <select class="form-select  @error('respon') is-invalid @enderror" id="validationCustom04" 
+                required name="id_responsable[]" value="{{ old('respon') }} ">
+                <option selected disabled value="">Selecciona el Responsable</option>
+                    @foreach($usuarios as $usuario)
+                        <option value="{{ $usuario->id }}">{{ $usuario->name }} {{ $usuario->last_name }}</option>
+                    @endforeach
+                </select>
+                @error('respon')
+                    <div style="color: red; font-size: 12px;">
+                        {{$message}}
+                    </div>
+                @enderror
+            </div>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-success" id="add-document-btn">+ Agregar Responsable </button>
+                <button type="button" class="btn btn-danger" id="quit-document-btn">- Eliminar </button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
         </form>
       </div>
 
@@ -105,4 +123,27 @@
 </div>
 
 
+@endsection
+@section('js')
+<script>
+    document.getElementById('add-document-btn').addEventListener('click', function () {
+        const container = document.getElementById('document-container');
+        const firstGroup = container.querySelector('.document-group');
+        const clone = firstGroup.cloneNode(true);
+        const inputs = clone.querySelectorAll('input');
+        inputs.forEach(input => {
+            if (input.type !== 'hidden') input.value = '';
+        });
+
+        container.appendChild(clone);
+    });
+
+    document.getElementById('quit-document-btn').addEventListener('click', function () {
+        const container = document.getElementById('document-container');
+        const groups = container.querySelectorAll('.document-group');
+        if (groups.length > 1) {
+            container.removeChild(groups[groups.length - 1]);
+        }
+    });
+</script>
 @endsection
