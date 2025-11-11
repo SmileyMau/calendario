@@ -17,4 +17,9 @@ class Acuerdo extends Model
      public function sesion(){
         return $this->belongsTo(Sesione::class, 'id_sesion');
     }
+    public function responsables()
+{
+    return $this->hasMany(Responsables::class, 'id_acuerdo');
+}
+
 }

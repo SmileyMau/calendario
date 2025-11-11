@@ -11,4 +11,12 @@ class Responsables extends Model
         'id_usuario',
         'estatus',
     ]; 
+    public function acuerdo(){
+        return $this->belongsTo(Acuerdo::class,'id_acuerdo');
+    }
+    public function usuario()
+{
+    return $this->belongsTo(User::class, 'id_usuario');
+}
+
 }
