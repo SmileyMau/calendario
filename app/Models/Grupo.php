@@ -11,5 +11,9 @@ class Grupo extends Model
         'status',
         'id_tipo',
         'observacion',
-    ];
+    ];    
+    public function tipoGrupo()
+    {
+        return $this->belongsTo(TipoGrupo::class, 'id_tipo');
+    }
 }

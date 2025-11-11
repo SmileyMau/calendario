@@ -79,51 +79,6 @@
                     </div>
                 @endif
 
-		<div class="left-side-bar">
-			<div class="brand-logo">
-				<a href="#">
-					<img src="{{asset('images/logos/logo_blanco.png')}}" alt="" class="light-logo" width="75"/>
-					<img src="{{asset('images/logos/logo.png')}}" alt="" class="dark-logo" width="75"/>
-					<!--<img
-						src=""
-						alt=""
-						class="light-logo"
-					/>-->
-				</a>
-				<div class="close-sidebar" data-toggle="left-sidebar-close">
-					<i class="ion-close-round"></i>
-				</div>
-			</div>
-			<div class="menu-block customscroll">
-				<div class="sidebar-menu">
-					<ul id="accordion-menu">
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon bi bi-house"></span
-								><span class="mtext">Agenda</span>
-							</a>
-							<ul class="submenu">
-								<li><a href="{{ route('agenda.index')}}">Calendario</a></li>
-							</ul>
-							@if (auth()->user()->rol == 'SA')
-								<ul class="submenu">
-									<li><a href="{{ route('evento.index')}}">Lista</a></li>
-								</ul>
-							@endif
-							
-						</li>
-						<li class="dropdown">
-							<a href="{{ route('grupo.index')}}" class="dropdown-toggle">
-								<span class="micon bi bi-house"></span
-								><span class="mtext">Grupo</span>
-							</a>
-							
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="mobile-menu-overlay"></div>
                 @if (session('error'))
                     <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                         {{ session('error') }}
@@ -209,6 +164,15 @@
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ route('acuerdos.index') }}">Acuerdos</a></li>
+                        </ul>
+
+                        <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon bi bi-calendar-event"></span>
+                            <span class="mtext">Grupo</span>
+                        </a>
+                         <ul class="submenu">
+                            <li><a href="{{ route('grupo.index') }}">Lista</a></li>
                         </ul>
                     </li>
                 </ul>

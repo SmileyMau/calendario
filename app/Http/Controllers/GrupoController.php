@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Grupo;
+use App\Models\TipoGrupo;
 class GrupoController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class GrupoController extends Controller
     {
         try {
             $grupos = Grupo::all();
-            return view('grupo.index', compact('grupos'));
+            $tipo_grupos = TipoGrupo::all();
+            return view('grupo.index', compact('grupos', 'tipo_grupos'));
         } catch (\Exception $e) {
             return response()->json(['error' => 'ERROR AL OBTENER LOS GRUPOS'], 500);
         }
@@ -25,8 +27,8 @@ class GrupoController extends Controller
     public function create()
     {
         try {
-            $tipoGrupos = Grupo::all();
-            return response()->json($tipoGrupos, 200);
+            $tipoGrupos = TipoGrupo::all();
+            return view('grupo.create', compact('tipoGrupos'));
         } catch (\Exception $e) {
             return response()->json(['error' => 'ERROR AL OBTENER LOS TIPOS DE GRUPOS'], 500);
         }
@@ -36,11 +38,22 @@ class GrupoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $grupo = Grupo::create($request->all());
+    {
+         try{
+            $grupo = Grupo::create([
+                'descripcion' => $request->input('descripcion'),
+                'id_tipo' => $request->input('id_tipo'),
+                'observacion' => $request->input('observacion'),
+                'status' => 'A',
 
-    return response()->json($grupo);
-}
+            ]);
+            $grupo->save();
+
+            return back()->with('success','Exito al Guardar');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 
 
     /**
@@ -50,7 +63,9 @@ class GrupoController extends Controller
     {
         try {
             $grupo = Grupo::findOrFail($id);
-            return response()->json($grupo, 200);
+            $tipo_grupos = TipoGrupo::all();
+             return view('grupo.show',compact('grupo', 'tipo_grupos'));
+
         } catch (\Exception $e) {
             return response()->json(['error' => 'GRUPO NO ENCONTRADO'], 404);
         }
@@ -63,7 +78,7 @@ class GrupoController extends Controller
     {
         try {
             $grupo = Grupo::findOrFail($id);
-            return response()->json($grupo, 200);
+            return view('grupo.edit',compact('grupo', 'tipo_grupos'));
         } catch (\Exception $e) {
             return response()->json(['error' => 'GRUPO NO ENCONTRADO'], 404);
         }
@@ -77,7 +92,7 @@ class GrupoController extends Controller
         try {
             $grupo = Grupo::findOrFail($id);
             $grupo->update($request->all());
-            return response()->json($grupo, 200);
+            return view('grupo.update', compact('grupo', 'tipo_grupos'));
         } catch (\Exception $e) {
             return response()->json(['error' => 'ERROR AL ACTUALIZAR EL GRUPO'], 500);
         }

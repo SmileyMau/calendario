@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('grupos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_tipo')->unsigned()->notNull();
             $table->string('descripcion');
             $table->string('status');
-            $table->string('id_tipo');
             $table->string('observacion');
             $table->timestamps();
 

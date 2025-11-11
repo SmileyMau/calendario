@@ -2,8 +2,15 @@
 
 @section('content')
 
- <h4>Lista de Grupos</h4>
- <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalGrupo"> Agregar Grupo</button>    
+<div class="d-flex bd-highlight">
+    <div class="p-2 w-100 bd-highlight">
+        <h1>Grupos</h1>
+    </div>
+    <div class="p-2 flex-shrink-1 bd-highlight">
+        <h1><a href="" class="btn btn-success btn-sm" type="button"  data-bs-toggle="modal" 
+            data-bs-target="#modalGrupo" id="modal_show">Agregar</a></h1>
+    </div>
+</div>
 
 <div class="card-box mb-30">
 
@@ -11,9 +18,10 @@
         <thead class="">
             <tr>
                 <th>ID</th>
+                <th>Tipo</th>
                 <th>Descripción</th>
-                <th>Status</th>
                 <th>Observación</th>
+                <th>Status</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -21,6 +29,7 @@
             @foreach($grupos as $grupo)
             <tr>
                 <td>{{ $grupo->id }}</td>
+                <td>{{ $grupo->tipoGrupo->descripcion }}</td>
                 <td>{{ $grupo->descripcion }}</td>
                 <td>{{ $grupo->status }}</td>
                 <td>{{ $grupo->observacion }}</td>
@@ -51,11 +60,12 @@
                         <input type="text" name="descripcion" class="form-control" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Status</label>
-                        <select name="status" class="form-control" required>
-                            <option value="" disabled selected>Seleccionar status</option>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
+                        <label class="form-label">TIPO</label>
+                        <select name="id_tipo" class="form-control" required>
+                            <option value="" disabled selected>Seleccionar tipo</option>
+                            @foreach($tipo_grupos as $tipo)
+                                <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-12">
@@ -66,6 +76,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
+
                 </div>
             </form>
         </div>
