@@ -25,14 +25,14 @@
                 @foreach ($acuerdos as $acuerdo)
                     <tr>
                         <td>{{ $acuerdo->id }}</td>
-                        <td>{{ $acuerdo->sesion->numero}}</td>
+                        <td>{{ $acuerdo->sesion->numero}}--{{$acuerdo->sesion->grupos->descripcion}}</td>
                         <td>{{ $acuerdo->num_acuerdo }}</td>
                         <td>{{ $acuerdo->nomenclatura }}</td>
                     <td class="text-center" style="min-width: 150px;">
                           <div class="dropdown">
                               <a class="btn btn-link" href="#" role="button" id="dropdownMenuButton{{ $acuerdo->id }}" 
                                 data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 25px;">
-                                  <i class="ti ti-article"></i>
+                                  <i class="dw dw-more"></i>
                               </a>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $acuerdo->id }}">
                                   <li><a class="dropdown-item" href="{{ route('acuerdos.show', $acuerdo->id) }}">Ver</a></li>
@@ -70,7 +70,7 @@
                 required name="id_sesion" value="{{ old('id_sesion') }} ">
                 <option selected disabled value="">Selecciona la Sesión</option>
                     @foreach($sesiones as $sesion)
-                        <option value="{{ $sesion->id }}">{{ $sesion->numero }}</option>
+                        <option value="{{ $sesion->id }}">{{ $sesion->numero }}--{{$sesion->grupos->descripcion}}</option>
                     @endforeach
                 </select>
                 @error('id_sesion')
@@ -94,7 +94,7 @@
       
            <div class="col-md-12" id="document-container" style="margin-top: 2%">
             <label >Responsables</label>
-            <div class="document-group" >
+            <div class="document-group mb-2 d-flex gap-2 align-items-center" >
                 <select class="form-select  @error('respon') is-invalid @enderror" id="validationCustom04" 
                 required name="id_responsable[]" value="{{ old('respon') }} ">
                 <option selected disabled value="">Selecciona el Responsable</option>

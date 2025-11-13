@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grupo;
 use App\Models\Sesione;
 use Illuminate\Http\Request;
 use OpenTelemetry\SDK\Resource\Detectors\Service;
@@ -15,7 +16,8 @@ class SesionController extends Controller
     {
         try{
             $sesion=Sesione::all(); 
-            return view('sesiones.index',compact('sesion'));
+            $grupos=Grupo::all(); 
+            return view('sesiones.index',compact('sesion','grupos'));
             
 
         }catch(\Exception $e){
@@ -40,7 +42,7 @@ class SesionController extends Controller
         try{
             $sesion=Sesione::Create([
            
-                'id_grupo'=>'1',
+                'id_grupo'=>$request->input('id_grupo'),
                 'fecha'=>$request->input('fecha'),
                 'descripcion'=>$request->input('descripcion'),
                 'objetivo'=>$request->input('objetivo'),
@@ -48,7 +50,7 @@ class SesionController extends Controller
 
             ]);
         $sesion->save(); 
-        return back()->with('success','Exito al guardas Sesión'); 
+        return back()->with('success','Exito al guardar Sesión'); 
 
         }catch(\Exception $e){
             return back()->with('error','No se pudo almacenar');
@@ -63,7 +65,8 @@ class SesionController extends Controller
     {
         try{
             $sesion=Sesione::findOrFail($id);
-            return view('sesiones.show',compact('sesion'));
+            $grupos=Grupo::all(); 
+            return view('sesiones.show',compact('sesion','grupos'));
         }catch(\Exception $e){
             return back()->with('error','al parecer  Hubo un error ');
 
@@ -77,7 +80,8 @@ class SesionController extends Controller
     {
         try{
             $sesion=Sesione::findOrFail($id);
-            return view('sesiones.edit',compact('sesion'));
+            $grupos=Grupo::all(); 
+            return view('sesiones.edit',compact('sesion','grupos'));
 
         }catch(\Exception $e){
             return back()->with('error','Al parecer Hubo un Error');

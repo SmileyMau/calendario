@@ -1,80 +1,69 @@
-
 @extends('template')
-@section ('content')
+@section('content')
 
-<div class="pd-20 card-box mb-30">
-	<div class="calendar-wrap">
+<div class="card mb-4 p-4">
+	<div class="calendar-wrap mb-4">
 		<div id="calendar"></div>
 	</div>
-	<!-- calendar modal -->
-	<div
-		id="modal-view-event"
-		class="modal modal-top fade calendar-modal"
-	>
+
+	<!-- Modal: Ver evento -->
+	<div id="modal-view-event" class="modal fade" tabindex="-1" aria-labelledby="viewEventLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-body">
 					<h4 class="h4">
-						<span class="event-icon weight-400 mr-3"></span
-						><span class="event-title"></span>
+						<span class="event-icon fw-normal me-2"></span>
+						<span class="event-title"></span>
 					</h4>
-					<div class="event-body"></div>
+					<div class="event-body mt-3"></div>
 				</div>
 				<div class="modal-footer">
-					<button
-						type="button"
-						class="btn btn-primary"
-						data-dismiss="modal"
-					>
-						Close
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+						Cerrar
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div
-		id="modal-view-event-add"
-		class="modal modal-top fade calendar-modal"
-	>
+
+	<!-- Modal: Añadir evento -->
+	<div id="modal-view-event-add" class="modal fade" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
-				<form id="add-event" method="post" action="{{route('evento.store')}}">
+				<form id="add-event" method="post" action="{{ route('evento.store') }}">
 					@csrf
 					<div class="modal-body">
-						<h4 class="text-blue h4 mb-10">Añadir evento</h4>
-						<div class="form-group">
-							<label>Titulo del evento</label>
-							<input type="text" class="form-control" name="titulo" />
+						<h4 class="text-primary h4 mb-3">Añadir evento</h4>
+
+						<div class="mb-3">
+							<label class="form-label">Título del evento</label>
+							<input type="text" class="form-control" name="titulo" required>
 						</div>
-						<div class="form-group">
-							<label>Fecha inicial del evento</label>
-							<input type="text" class="form-control datetimepicker" name="fecha_ini" />
+
+						<div class="mb-3">
+							<label class="form-label">Fecha inicial del evento</label>
+							<input type="text" class="form-control datetimepicker" name="fecha_ini" required>
 						</div>
-						<div class="form-group">
-							<label>Fecha final del evento</label>
-							<input type="text" class="form-control datetimepicker" name="fecha_fin" />
+
+						<div class="mb-3">
+							<label class="form-label">Fecha final del evento</label>
+							<input type="text" class="form-control datetimepicker" name="fecha_fin" required>
 						</div>
-						<div class="form-group">
-							<label>Descripcion del evento</label>
-							<textarea class="form-control" name="descripcion"></textarea>
+
+						<div class="mb-3">
+							<label class="form-label">Descripción del evento</label>
+							<textarea class="form-control" name="descripcion" rows="3"></textarea>
 						</div>
-						<div class="form-group">
-							<label>Color</label>
-							<input type="color" class="form-control" name="color" />
+
+						<div class="mb-3">
+							<label class="form-label">Color</label>
+							<input type="color" class="form-control form-control-color" name="color" value="#3788d8">
 						</div>
 					</div>
+
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">
-							Guardar
-						</button>
-						<button
-							type="button"
-							class="btn btn-primary"
-							data-dismiss="modal"
-						>
-							Cerrar
-						</button>
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 					</div>
 				</form>
 			</div>
@@ -83,25 +72,17 @@
 </div>
 @endsection
 
-@section ('js')
+@section('js')
 <script>
-	
 (function () {
 	"use strict";
-	// ------------------------------------------------------- //
-	// Calendar
-	// ------------------------------------------------------ //
+
 	jQuery(function () {
-		// page is ready
 		jQuery("#calendar").fullCalendar({
-			themeSystem: "bootstrap4",
-			// emphasizes business hours
+			themeSystem: "bootstrap4", 
 			businessHours: false,
 			defaultView: "month",
-			// event dragging & resizing
 			editable: true,
-			
-			// header
 			header: {
 				left: "title",
 				center: "month,agendaWeek,agendaDay",
@@ -111,30 +92,28 @@
 			events: [
 				@foreach ($eventos as $evento)
 				{
-					title: "{{$evento->titulo}}",
-					description:
-						"{{$evento->descripcion}}",
-					start: "{{$evento->fecha_ini}}",
-					end: "{{$evento->fecha_fin}}",
-					backgroundColor: '{{$evento->color}}',
-					borderColor: '{{$evento->color}}',
+					title: "{{ $evento->titulo }}",
+					description: "{{ $evento->descripcion }}",
+					start: "{{ $evento->fecha_ini }}",
+					end: "{{ $evento->fecha_fin }}",
+					backgroundColor: "{{ $evento->color }}",
+					borderColor: "{{ $evento->color }}",
 				},
 				@endforeach
-				
 			],
 			dayClick: function () {
-				jQuery("#modal-view-event-add").modal();
+				let modalAdd = new bootstrap.Modal(document.getElementById('modal-view-event-add'));
+				modalAdd.show();
 			},
 			eventClick: function (event, jsEvent, view) {
-				jQuery(".event-icon").html("<i class='fa fa-" + event.icon + "'></i>");
+				jQuery(".event-icon").html("<i class='fa fa-" + (event.icon || 'calendar') + "'></i>");
 				jQuery(".event-title").html(event.title);
 				jQuery(".event-body").html(event.description);
-				jQuery(".eventUrl").attr("href", event.url);
-				jQuery("#modal-view-event").modal();
+				let modalView = new bootstrap.Modal(document.getElementById('modal-view-event'));
+				modalView.show();
 			},
 		});
 	});
-})(jQuery);
-
+})();
 </script>
 @endsection

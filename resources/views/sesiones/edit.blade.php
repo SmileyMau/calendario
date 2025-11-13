@@ -19,19 +19,11 @@
         </div>
     </div>
 <div class="card">
+    <div class="card-body">
     <form method="POST" enctype="multipart/form-data" action="{{ route('sesiones.update',$sesion->id) }}">
     @csrf
     @method('PUT')
     <div class="row g-3 mb-3">
-            <div class="col-md-6">
-                <label for="fecha" class="form-label">Grupo</label>
-                <select name="grupo" class="form-control" >
-                    <option selected value="">
-                        {{$sesion->id_grupo}}
-                    </option>
-
-                </select>
-            </div>
             <div class="col-md-6">
                 <label for="fecha" class="form-label">Fecha</label>
                 <input type="date" name="fecha" id="fecha" class="form-control" value="{{$sesion->fecha}}">
@@ -39,6 +31,19 @@
             <div class="col-md-6">
                 <label for="numero" class="form-label">Número de sesión</label>
                 <input type="number" name="numero" id="numero" class="form-control" placeholder="Ej. 12" value="{{$sesion->numero}}" >
+            </div>
+            <div class="col-12" >
+                <select class="form-select  @error('respon') is-invalid @enderror" id="validationCustom04" 
+                required name="id_grupo" value="{{ old('respon') }} ">
+                    @foreach($grupos as $grupo)
+                        <option value="{{ $grupo->id }}">{{ $grupo->descripcion }} </option>
+                    @endforeach
+                </select>
+                @error('respon')
+                    <div style="color: red; font-size: 12px;">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
             <div class="col-12">
                 <label for="descripcion" class="form-label">Descripción</label>
@@ -49,11 +54,13 @@
                 <label for="objetivo" class="form-label">Objetivo</label>
                 <textarea name="objetivo" id="objetivo" class="form-control" rows="3" >{{$sesion->objetivo}}</textarea>
             </div>
+            
         </div>
         <div class="text-end">
             <button type="submit" class="btn btn-primary" style="background-color: green">Guardar</button>
       
         </div>
     </form>
+    </div>
 </div>
 @endsection

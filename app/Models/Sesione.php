@@ -15,5 +15,8 @@ class Sesione extends Model
         'numero',
 
     ];
-   
+    public function grupos()
+    {
+        return $this->belongsTo(Grupo::class, 'id_grupo');
+    }
 }
