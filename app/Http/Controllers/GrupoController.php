@@ -87,16 +87,32 @@ class GrupoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        try {
-            $grupo = Grupo::findOrFail($id);
-            $grupo->update($request->all());
-            return view('grupo.update', compact('grupo', 'tipo_grupos'));
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'ERROR AL ACTUALIZAR EL GRUPO'], 500);
-        }
+   public function update(Request $request, string $id)
+{
+    try {
+        $request->validate([
+            'descripcion' => 'required|string|max:255',
+            'id_tipo' => 'required|integer|exists:tipo_grupos,id',
+            'observacion' => 'nullable|string|max:500',
+        ]);
+
+        $grupo = Grupo::findOrFail($id);
+
+        $grupo->descripcion = $request->input('descripcion');
+        $grupo->id_tipo = $request->input('id_tipo');
+        $grupo->observacion = $request->input('observacion');
+        $grupo->save();|
+
+        return redirect()->route('grupo.index')->with('success', 'Grupo actualizado correctamente.');
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => 'ERROR AL ACTUALIZAR EL GRUPO',
+            'detalle' => $e->getMessage()
+        ], 500);
     }
+}
+
+
 
     /**
      * Remove the specified resource from storage.

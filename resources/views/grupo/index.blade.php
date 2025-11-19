@@ -36,6 +36,11 @@
                 <td class="text-end">
                     <a href="{{ route('grupo.show', $grupo->id) }}" class="btn btn-sm btn-info">Ver</a>
                     <a href="{{ route('grupo.edit', $grupo->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <form action="{{ route('grupo.destroy', $grupo->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este grupo?')">Eliminar</button>
+                    </form> 
                 </td>
             </tr>
             @endforeach
