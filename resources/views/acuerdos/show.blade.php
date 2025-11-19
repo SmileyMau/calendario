@@ -124,12 +124,12 @@
 }
 
 .list-group-item {
-    border-left: 3px solid #0d6efd;
+    border-left: 3px solid #4e4e4e;
     transition: all 0.2s;
 }
 
 .list-group-item:hover {
-    background-color: #f8f9fa;
+    background-color: rgb(221, 220, 220);
     transform: translateX(5px);
 }
 

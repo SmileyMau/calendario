@@ -155,7 +155,7 @@ class AcuerdoController extends Controller
                 ]);
             }
 
-            return redirect()->route('acuerdos.index')->with('success', 'Acuerdo actualizado exitosamente');
+            return back()->with('success', 'Acuerdo actualizado exitosamente');
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'No se pudo actualizar el acuerdo: ' . $e->getMessage());
         }

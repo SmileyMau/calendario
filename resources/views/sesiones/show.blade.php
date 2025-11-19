@@ -34,7 +34,7 @@
                 <div class="col-md-6">
                     <div class="info-item mb-3">
                         <label class="text-muted small mb-1">GRUPO</label>
-                        <p class="fw-semibold mb-0"> </p>
+                        <p class="fw-semibold mb-0">{{$sesion->grupos->descripcion}}</p>
                     </div>
                     <div class="info-item mb-3">
                         <label class="text-muted small mb-1">FECHA</label>

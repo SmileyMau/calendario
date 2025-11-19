@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="{{asset('/assets/css/styles.min.css')}}" />
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -147,6 +147,15 @@
                             @endif
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon bi bi-calendar-event"></span>
+                            <span class="mtext">Grupo</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{ route('grupo.index') }}">Lista</a></li>
+                        </ul>
+                    </li>
 
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
@@ -154,7 +163,7 @@
                             <span class="mtext">Sesiones</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ route('sesiones.index') }}">Sesión</a></li>
+                            <li><a href="{{ route('sesiones.index') }}">Lista</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -163,18 +172,10 @@
                             <span class="mtext">Acuerdos</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ route('acuerdos.index') }}">Acuerdos</a></li>
+                            <li><a href="{{ route('acuerdos.index') }}">Lista</a></li>
                         </ul>
 
-                        <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon bi bi-calendar-event"></span>
-                            <span class="mtext">Grupo</span>
-                        </a>
-                         <ul class="submenu">
-                            <li><a href="{{ route('grupo.index') }}">Lista</a></li>
-                        </ul>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -205,7 +206,7 @@
     <script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
     <script src="{{ asset('src/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendors/scripts/calendar-setting.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     @yield('js')
     
