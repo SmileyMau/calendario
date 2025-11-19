@@ -8,14 +8,6 @@
         @csrf
 
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
-            @error('nombre')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>
             <input type="text" class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" name="descripcion" value="{{ old('descripcion') }}" required>
             @error('descripcion')
@@ -24,9 +16,9 @@
         </div>
 
         <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
-            <input type="text" class="form-control @error('status') is-invalid @enderror" id="status" name="status" value="{{ old('status') }}" required>
-            @error('status')
+            <label for="status" class="form-label">Tipo</label>
+            <input type="text" class="form-control @error('id_tipo') is-invalid @enderror" id="status" name="id_tipo" value="{{ old('id_tipo', $grupo->id_tipo) }}" required>
+            @error('id_tipo')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
